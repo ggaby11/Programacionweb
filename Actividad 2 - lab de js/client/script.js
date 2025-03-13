@@ -55,16 +55,24 @@ document.getElementById("btnAgregar").addEventListener("click", function () {
     document.getElementById("listaTareas").appendChild(tarea);
 });
 
-// 🟢 DESAFÍO 4: Cargar datos de usuarios desde una API pública
 document.getElementById("btnUsuarios").addEventListener("click", function () {
-    // Lectura recomendada: https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Using_Fetch
+    let user;
+    let data;
+    
     fetch("https://jsonplaceholder.typicode.com/users")
-    .then(responose => Response.json())
-    .then(data => console.log(data));
-    // TODO: Mostrar solo los nombres y correos electrónicos en "listaUsuarios"
-    // TODO: Si la petición falla, mostrar un mensaje de error en consola
-});
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
 
+        for (let i = 0; i < data.length; i++) {
+            user = data[i];
+            item = document.createElement("li");
+            item.textContent = `Nombre: ${user.name}, Email: ${user.email}`;
+            document.getElementById("listaUsuarios").appendChild(item);
+        }
+
+    }) .catch(error => console.error("Error, no se pudo cargar usuarios ", error));
+});
 // 🟢 DESAFÍO 5 (Extra): Guardar y cargar la lista de tareas usando localStorage
 // Lectura recomendada: https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 // TODO: Guardar las tareas en localStorage cada vez que se agregue o elimine una
