@@ -34,26 +34,44 @@ document.getElementById("btnColor").addEventListener("click", function () {
 
 document.getElementById("btnAgregar").addEventListener("click", function () {
     // Se usa value y no textContent porque no es un elemento html con contenido sino un "valor externo"
-    let entrada = document.getElementById("inputTarea").value;
+    let entrada = document.getElementById("inputTarea").value.trim();
+    if (!entrada) return; // Evita agregar tareas vacías
+        let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+        tareas.push(entrada);
+        localStorage.setItem("tareas", JSON.stringify(tareas));
 
-    let tarea = document.createElement("li");
-    tarea.textContent = entrada;
+        agregarTarea(entrada);
+        document.getElementById("inputTarea").value = ""; // Limpiar input
+    });
 
-    document.getElementById("listaTareas").appendChild(tarea);
+    function agregarTarea(texto) {
+        let tarea = document.createElement("li");
+        tarea.textContent = texto;
 
-    // crear y agregar un boton
-    let botonRemove = document.createElement("button");
-    botonRemove.textContent = "eliminar";
-    botonRemove.style.float = "right";
-    botonRemove.style.color = "red";
+        let botonRemove = document.createElement("button");
+        botonRemove.textContent = "Eliminar";
+        botonRemove.style.float = "right";
+        botonRemove.style.color = "red";
 
-    botonRemove.onclick = function () {
-        this.parentElement.remove();
-    }
+        botonRemove.onclick = function () {
+            this.parentElement.remove();
+            eliminarDeLocalStorage(texto);
+        };
 
-    tarea.appendChild(botonRemove);
-    document.getElementById("listaTareas").appendChild(tarea);
-});
+        tarea.appendChild(botonRemove);
+        document.getElementById("listaTareas").appendChild(tarea);
+        }
+
+        function cargarTareas() {
+            let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+            tareas.forEach(tarea => agregarTarea(tarea));
+        }
+
+        function eliminarDeLocalStorage(texto) {
+            let tareas = JSON.parse(localStorage.getItem("tareas")) || [];
+            tareas = tareas.filter(t => t !== texto);
+            localStorage.setItem("tareas", JSON.stringify(tareas));
+        };
 
 document.getElementById("btnUsuarios").addEventListener("click", function () {
     let user;
