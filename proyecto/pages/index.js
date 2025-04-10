@@ -21,8 +21,8 @@ export default function Home() {
     try {
       const res = await fetch(`${API_URL}${pokeId}`);
       if (!res.ok) throw new Error(); 
-      const data = await res.json();
 
+      const data = await res.json();
       const speciesRes = await fetch(`${SPECIES_URL}${pokeId}`);
       const speciesData = await speciesRes.json();
 
