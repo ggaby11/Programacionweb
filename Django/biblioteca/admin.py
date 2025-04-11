@@ -1,11 +1,10 @@
 from django.contrib import admin
 from .models import Autor, Libro, Resenia
 
-"""
 admin.site.register(Autor)
 admin.site.register(Libro)
 admin.site.register(Resenia)
-"""
+
 
 class autorAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'nacionalidad')
