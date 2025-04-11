@@ -4,20 +4,26 @@
 Mi usuario :D
 ![alt text](image-3.png)
 
-Autores
+Listado de autores
+
 ![alt text](image.png)
 
-Modificar detalles de un autor
+vista para modificar detalles de un autor
+
 ![alt text](image-6.png)
 
-Libros
+Listado de libros
+
 ![alt text](image-1.png)
 
-Cambiar detalles se un libro
+Cambiar detalles de un libro
+
 ![alt text](image-5.png)
 
-Resenias
+Listado de reseñas
+
 ![alt text](image-2.png)
 
-Cambiar una resenia
+Vista para modificar detaller de una reseña
+
 ![alt text](image-4.png)
